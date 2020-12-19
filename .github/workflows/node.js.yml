@@ -26,4 +26,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
     - run: npm run build
-    - run: npm run test:e2e
+    - name: Cypress run
+      uses: cypress-io/github-action@v2
+      with:
+          browser: chrome
