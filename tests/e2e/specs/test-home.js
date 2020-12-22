@@ -2,7 +2,7 @@
 // https://nightwatchjs.org/guide
 
 module.exports = {
-  'default e2e tests': browser => {
+  'Test Home with Header and Logo': browser => {
     browser
       .init()
       .waitForElementVisible('#app')
@@ -12,10 +12,12 @@ module.exports = {
       .end()
   },
 
-  'example e2e test using a custom command': browser => {
+  'Test if p-tag with instruction is visible': browser => {
     browser
-      .openHomepage()
-      .assert.elementPresent('.instruction')
-      .end()
-  }
+        .init()
+        .waitForElementVisible('#app')
+        .assert.elementPresent('#instruction-text')
+        .assert.containsText('p', 'In this App you have the possibility')
+        .end()
+  },
 }
