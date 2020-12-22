@@ -2,7 +2,7 @@
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
     <button @click="test">Test Api Click</button>
-    <Instruction msg="Hello to the Weather-App"></Instruction>
+    <Instruction msg="Welcome to the Weather-App"></Instruction>
   </div>
 </template>
 
