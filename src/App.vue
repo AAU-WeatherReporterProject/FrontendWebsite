@@ -1,20 +1,34 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home Test</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link to="/">Home</router-link> |
+      <router-link to="/checkWeather">Check Weather</router-link> |
+      <router-link to="/inputWeather">Input Weather</router-link>
     </div>
     <router-view/>
   </div>
 </template>
 
 <style>
+
+*{
+  box-sizing: border-box;
+}
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: Avenir, Helvetica, Arial, 'montserrat', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+
+  /*background-image: url("./assets");*/
+  background-size: cover;
+  background-position: bottom;
+  transition: 0.4s;
+  /* that the side is better readable, some blackish overlay*/
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.75));
+
 }
 
 #nav {
@@ -27,6 +41,8 @@
 }
 
 #nav a.router-link-exact-active {
-  color: #42b983;
+  color: #298e8e;
+  /*color: #42b983; #295c8e */
 }
+
 </style>
