@@ -21,6 +21,7 @@ module.exports = {
     browser.end()
   },
 
+
   // 'verify if string "e2e-nightwatch" is within the cli plugin links': (browser) => {
   //   const homepage = browser.page.homepage()
   //   const welcomeSection = homepage.section.app.section.instruction
