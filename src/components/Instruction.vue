@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div class="instruction">
     <h1>{{ msg }}</h1>
 
     <p>In this App you have the possibility to check detailed weather around you.
