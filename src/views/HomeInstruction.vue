@@ -17,13 +17,13 @@ export default {
   },
   methods: {
       async test() {
-      try{
-        const response = await this.$store.dispatch('test');
-        alert(JSON.stringify(response));
-      }
-      catch(e){
-
-      }
+      // try{
+      //   const response = await this.$store.dispatch('test');
+      //   alert(JSON.stringify(response));
+      // }
+      // catch(e){
+      //
+      // }
     }
   }
 }

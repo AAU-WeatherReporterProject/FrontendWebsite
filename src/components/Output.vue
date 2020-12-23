@@ -7,13 +7,12 @@
       <div class="location-box">
         <div class="location">Klagenfurt, Austria</div>
         <div class="date">Tuesday 22 Decembre 2020 </div>
-
+      </div>
         <div class="weather-box">
           <div class="temp">4°C</div>
           <div class="sky-state">Rain</div>
         </div>
       </div>
-    </div>
   </div>
 </template>
 
@@ -23,8 +22,8 @@ export default {
   methods: {
     async getWeather() {
       try {
-        const response = await this.$store.dispatch('getWeather');
-        alert(response);
+        // const response = await this.$store.dispatch('getWeather');
+        // alert(response);
         // alert(JSON.stringify(response));
       } catch (e) {
 
