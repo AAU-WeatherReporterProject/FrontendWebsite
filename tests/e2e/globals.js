@@ -19,6 +19,22 @@ module.exports = {
   // default timeout value in milliseconds for waitFor commands and implicit waitFor value for
   // expect assertions
   waitForConditionTimeout: 5000,
+  webdriver: {
+      start_process: true,
+      server_path: 'node_modules/.bin/chromedriver',
+      port: 9515
+  },
+  test_settings: {
+      default: {
+          desiredCapabilities: {
+              browserName: 'chrome',
+              chromeOptions: {
+                  binary: '/usr/bin/google-chrome',
+                  args: ['--no-sandbox', '--headless']
+              }
+          }
+      }
+  },
 
   'default': {
     /*
