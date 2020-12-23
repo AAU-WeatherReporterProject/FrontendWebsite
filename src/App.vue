@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/checkWeather">Check Weather</router-link> |
-      <router-link to="/inputWeather">Input Weather</router-link>
+      <router-link id="home-link" to="/">Home</router-link> |
+      <router-link id="check-w-link" to="/checkWeather">Check Weather</router-link> |
+      <router-link id="input-w-link" to="/inputWeather">Input Weather</router-link>
     </div>
     <router-view/>
   </div>
