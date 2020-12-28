@@ -15,5 +15,5 @@
           with:
             node-version: 12
         - run: npm ci
-        - run: npm run test:e2e --env chrome --headless
+        - run: npm run test:e2e --headless
         - run: npm build
