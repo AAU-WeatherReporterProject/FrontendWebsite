@@ -34,10 +34,10 @@ module.exports = {
           selector: 'h1'
         },
 
-        welcome: {
-          // the equivalent css selector for the "welcome" sub-section would be:
+        instruction: {
+          // the equivalent css selector for the "instructions" sub-section would be:
           //  '#app div.hello'
-          selector: 'div.hello',
+          selector: 'div.instruction',
 
           elements: {
             cliPluginLinks: {
