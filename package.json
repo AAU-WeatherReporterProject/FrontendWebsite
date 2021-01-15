@@ -8,6 +8,7 @@
     "test:e2e": "vue-cli-service test:e2e"
   },
   "dependencies": {
+    "axios-api-versioning": "^3.0.0",
     "core-js": "^3.6.5",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
