@@ -7,7 +7,7 @@
 
 <script>
 // @ is an alias to /src
-import Output from "@/components/Output.vue";
+import Output from "@/components/WeatherOutput.vue";
 
 export default {
   name: 'checkWeather',
