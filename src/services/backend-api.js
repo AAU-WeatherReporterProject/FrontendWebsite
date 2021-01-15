@@ -4,7 +4,7 @@ import { withVersioning, VersioningStrategy } from 'axios-api-versioning';
 
 const axiosClient = AXIOS.create({
   baseURL: `/api/v{apiVersion}`
-});0
+});
 
 // Make Versioning over URL possible
 const axios = withVersioning(axiosClient, {
