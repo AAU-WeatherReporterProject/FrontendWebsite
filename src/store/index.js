@@ -10,8 +10,16 @@ export default new Vuex.Store({
   mutations: {
   },
   actions: {
-    test({commit}) {
-      return api.test();
+    getMeasurements: async function () {
+      let weather = '';
+      try {
+        const response = await api.getMeasurements();
+        weather = response;
+      } catch (e) {
+        weather = 'Weather Data could not be fetched.';
+        console.error(e);
+      }
+      return weather;
     }
   },
   modules: {
