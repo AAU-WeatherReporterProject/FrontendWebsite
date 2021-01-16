@@ -1,7 +1,6 @@
 <template>
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
-    <button @click="test">Test Api Click</button>
     <Instruction msg="Welcome to the Weather-App"></Instruction>
   </div>
 </template>
@@ -16,15 +15,6 @@ export default {
     Instruction
   },
   methods: {
-      async test() {
-      // try{
-      //   const response = await this.$store.dispatch('test');
-      //   alert(JSON.stringify(response));
-      // }
-      // catch(e){
-      //
-      // }
-    }
   }
 }
 </script>
