@@ -24,13 +24,15 @@ export default {
 <style>
 
 #input{
+  margin: 5px;
   padding: 5px;
 }
 
-.input-weather .input-temp{
+form [class^="input"] {
    display: block;
    width: 100%;
    padding: 15px;
+   margin: 5px;
 
    color: #313131;
    font-size: 20px;
@@ -46,11 +48,15 @@ export default {
    transition: 0.4s;
  }
 
-
-.input-weather .input-temp:focus{
+input[class^="input"]:focus{
   box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.25);
   background-color: rgba(255, 255, 255, 1);
   border-radius: 16px 0px 16px 0px;
 }
 
+button{
+  padding: 15px;
+  margin: 5px;
+  border-radius: 16px 0px 16px 0px;
+}
 </style>
