@@ -35,12 +35,11 @@ export default {
   methods:{
     async sendWeatherData() {
       try {
-        let response;
-        response = await this.$store.dispatch('sendWeatherData', this.weather);
-        // alert(this.$store.data.inputMsg);
-        this.$router.push({name: "OverviewWeather"});
-      } catch (response) {
+        const response = await this.$store.dispatch('sendWeatherData', this.weather);
         console.log(response);
+        this.$router.push({name: "OverviewWeather"});
+      } catch (e) {
+        console.log(e);
       }
     }
   }
