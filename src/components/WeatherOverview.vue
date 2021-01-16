@@ -4,7 +4,6 @@
     <div v-for="w in weatherlist.data" v-bind:key="w.key" class="weather-output">
       <div class="location-box">
         <div class="location big"><a href="#">{{ w.location }}</a></div>
-        <div class="location"> {{ w.name }} </div>
       </div>
     </div>
   </div>
