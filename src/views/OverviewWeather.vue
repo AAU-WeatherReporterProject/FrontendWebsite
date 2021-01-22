@@ -29,8 +29,11 @@ export default {
 
 .info {
   display: block;
-  width: 100%;
+  width: 50%;
   padding: 15px;
+  margin: auto;
+  margin-bottom: 10px;
+
 
   color: #313131;
   font-size: 20px;
