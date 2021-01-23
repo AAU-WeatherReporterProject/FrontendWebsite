@@ -54,6 +54,18 @@ input[class^="input"]:focus{
   border-radius: 16px 0px 16px 0px;
 }
 
+.left{
+  width: 12%;
+}
+
+label{
+  color: #FFF;
+  font-size: 25px;
+  font-weight: 700;
+  font-style: italic;
+  text-shadow: 3px 6px rgba(0, 0, 0, 0.25);
+}
+
 button{
   padding: 15px;
   margin: 5px;
