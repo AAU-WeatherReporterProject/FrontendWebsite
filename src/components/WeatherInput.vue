@@ -1,18 +1,23 @@
 <template>
   <div id="input">
-    <form @submit="sendWeatherData({weather})" method="post"
+    <form @submit.prevent="sendWeatherData()" method="post"
           class="input-weather">
-      <input label="Location" class="input-location" type="text" maxlength="20" name="Name of Location"
-             placeholder="Name of Location" v-model.trim="weather.key">
-      <input class="input-temp" type="text" maxlength="3" name="Temperature in Celsius"
-             placeholder="Temperature in Celsius" v-model="weather.temperature">
-      <select class="input-sky-state" name="Skystate" v-model="weather.skyState">
+      <div class="left">
+        <label for="loc">Location:</label>
+      </div>
+      <input id="loc" class="input-location" type="text" maxlength="20" name="Name of Location"
+             placeholder="Name of Location" v-model.trim="weather.key" required>
+      <div class="left">
+        <label for="temp">Temperature:</label>
+      </div>
+      <input id="temp" class="input-temp" type="number" :min="-40" :max="60" name="Temperature in Celsius"
+             placeholder="Temperature in Celsius" v-model="weather.temperature" required>
+      <div class="left">
+        <label for="sky">Sky-State:</label>
+      </div>
+      <select id="sky" class="input-sky-state" name="Skystate" v-model="weather.skyState" required>
         <option disabled value="">Please select one</option>
-        <option value="0">Sunny</option>
-        <option value="1">Windy</option>
-        <option value="2">Cloudy</option>
-        <option value="3">Rain</option>
-        <option value="4">Clear</option>
+        <option v-for="(skystate,index) in this.$store.state.skyWeather" :value="index">{{skystate}}</option>
       </select>
       <button type="submit">Add Weather</button>
     </form>
@@ -32,15 +37,15 @@ export default {
       }
     }
   },
+  //TODO TOAST
   methods: {
     async sendWeatherData() {
       try {
-        const response = await this.$store.dispatch('sendWeatherData', this.weather);
+        const response = await this.$store.dispatch('saveWeather', this.weather);
         console.log(response);
       } catch (e) {
         console.log(e);
       }
-      this.$router.push({name: "OverviewWeather"});
     }
   }
 }
