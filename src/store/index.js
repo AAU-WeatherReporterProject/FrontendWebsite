@@ -16,8 +16,7 @@ export default new Vuex.Store({
         getMeasurements: async function () {
             let msg;
             try {
-                const response = await api.getMeasurements();
-                msg = response;
+                msg = await api.getMeasurements();
             } catch (e) {
                 msg = 'Weather Data could not be fetched.';
                 console.error(e);
@@ -28,8 +27,7 @@ export default new Vuex.Store({
         async getWeatherData({commit}, key) {
             let msg = '';
             try {
-                const response = await api.getWeatherData(key);
-                msg = response;
+               msg = await api.getWeatherData(key);
             } catch (e) {
                 msg = 'Weather Data could not be fetched.';
                 console.error(e);
@@ -43,7 +41,6 @@ export default new Vuex.Store({
         },
 
         async saveWeather({commit}, weatherinfo) {
-            console.log("in saveWeather");
             let key = weatherinfo.key;
             let temperature = weatherinfo.temperature;
             let skyState = weatherinfo.skyState;
