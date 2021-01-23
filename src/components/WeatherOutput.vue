@@ -1,52 +1,51 @@
 <template>
   <div id="output">
-<!--    <div class="search-box">-->
-<!--      <input class="search-bar" type="text" placeholder="Search Location..." />-->
-<!--    </div>-->
-<!--    <button @click="getWeather('123456789', '2020-08-08 23:59:00', '2020-09-10 23:59:00')">Test Api Click</button>-->
-    <div v-for="w in weather.data" v-bind:key="w.key" class="weather-output">
-      <div class="location-box">
-        <div class="location"> {{ w.location }} </div>
-        <div class="location"> {{ w.name }} </div>
+    <div class="location"> in: {{key}}</div>
+
+    <!--    TODO Nachricht falls noch kein Wetter hinzugefüpgt wurde-->
+
+    <div v-for="w in this.weather" class="weather-output">
+      <div class="weather-box">
+        <div class="sky-state">
+<!--          Todo maybe with Access on Array as a Property-->
+          <div v-if="w.skyState == 0">Sunny</div>
+          <div v-else-if="w.skyState == 1">Windy</div>
+          <div v-else-if="w.skyState == 2">Cloudy</div>
+          <div v-else-if="w.skyState == 3">Rain</div>
+          <div v-else-if="w.skyState == 4">Clear</div>
+          <div v-else>No Sky-State-Information was given :(</div>
+        </div>
+        <div class="temp"> {{w.temperature}} °C</div>
+        <div class="date" >on: {{w.timestamp | formatDate}} </div>
       </div>
-<!--      <div class="date">From: {{w.from}} </div>-->
-<!--      <div class="date">To: {{ w.to }} </div>-->
-<!--      <div class="weather-box">-->
-<!--        <div class="temp">4°C</div>-->
-<!--        <div class="sky-state">Rain</div>-->
-<!--      </div>-->
     </div>
   </div>
 </template>
-<!--from=2020-08-08 23:59:00&to=2020-09-10 23:59:00&key=123456789-->
+
 <script>
 export default {
   name: "output",
   data(){
-    return {weather:undefined}
+    return {
+      key: this.$route.params.key,
+      weather:undefined,
+    }
   },
-  mounted: async function(){
-    try{
-          const response = await this.$store.dispatch('getMeasurements');
-          this.weather = response;
-          // alert(JSON.stringify(response));
-      console.warn(response);
-        }
-        catch(e){
+  async created() {
+    console.log("in Created");
+    try {
+      const response = await this.$store.dispatch('getWeatherData', this.key);
+      this.weather = response.data;
+    } catch (e) {
 
-      }
+    }
+  },
+  filters:{
+    formatDate(value){
+      if(!value) return '';
+      return value.replace(/(....)-(..)-(..) (..):(..):(..).(.)/, '$3.$2.$1 at: $4:$5 o\'clock');
+    }
   }
-  // methods: {
-  //   async getMeasurements(key, from, to) {
-  //     try{
-  //       const response = await this.$store.dispatch('getMeasurements');
-  //       alert(JSON.stringify(response));
-  //     }
-  //     catch(e){
-  //
-  //     }
-  //   }
-  // }
 }
 </script>
 
