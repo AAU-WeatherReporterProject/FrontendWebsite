@@ -1,21 +1,21 @@
 <template>
   <div id="output">
-    <p class="info">Please click on the Location you want further information for.</p>
+    <div class="info">Please click on the Location you want further information for.</div>
+<!--    TODO Nachricht falls noch kein Wetter hinzugefüpgt wurde-->
     <div v-for="w in weatherlist.data" v-bind:key="w.key" class="weather-output">
       <div class="location-box">
-        <div class="location big"><a href="#">{{ w.location }}</a></div>
+        <div class="location big"><router-link v-bind:to="'/checkWeather/' + w.location" >{{ w.location }}</router-link></div>
       </div>
     </div>
   </div>
 </template>
-
 <script>
 export default {
   name: "WeatherOverview",
   data() {
     return {weatherlist: undefined}
   },
-  mounted: async function () {
+  created: async function () {
     try {
       let response;
       response = await this.$store.dispatch('getMeasurements');
