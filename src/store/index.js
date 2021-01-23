@@ -6,9 +6,12 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     data: {
-        inputMsg: 'Waiting'
+
     },
-    state: {},
+    state: {
+        inputMsg: 'Waiting',
+        skyWeather: ['Sunny', 'Windy', 'Cloudy', 'Rain', 'Clear']
+    },
     actions: {
         getMeasurements: async function () {
             let msg;
@@ -37,30 +40,17 @@ export default new Vuex.Store({
         async sendWeatherData({commit}, weather) {
             commit('saveWeather', weather);
             return this.inputMsg;
-        }
-    },
-    mutations: {
-        async saveWeather(state, weatherinfo) {
+        },
+
+        async saveWeather({commit}, weatherinfo) {
+            console.log("in saveWeather");
             let key = weatherinfo.key;
             let temperature = weatherinfo.temperature;
             let skyState = weatherinfo.skyState;
-            if (isNaN(temperature)) {
-                throw this.inputMsg = 'Invalid temperature';
-            } else if (isNaN(skyState) || skyState < 0 || skyState > 4) {
-                throw this.inputMsg =   'Invalid sky state';
-            } else {
-                try {
-                    await api.sendWeatherData({
-                        metadata: {key},
-                        measurements: [{temperature, skyState}]
-                    });
-                    this.inputMsg = 'Data send';
-                } catch (e) {
-                    throw this.inputMsg = 'Error while sending data';
-                    // console.error(e);
-                }
-            }
-            return this.inputMsg;
+            return await api.sendWeatherData({
+                    metadata: {key},
+                    measurements: [{temperature, skyState}]
+                });
         }
     },
     modules: {}
