@@ -37,14 +37,24 @@ export default {
       }
     }
   },
-  //TODO TOAST
+
   methods: {
     async sendWeatherData() {
       try {
-        const response = await this.$store.dispatch('saveWeather', this.weather);
-        console.log(response);
+        await this.$store.dispatch('saveWeather', this.weather);
+        this.$bvToast.toast("Stored Weather for: " + this.weather.key  , {
+          title: 'Succes!',
+          variant: 'success',
+          toaster: 'b-toaster-top-center',
+          autoHideDelay: 5000
+        });
       } catch (e) {
-        console.log(e);
+        this.$bvToast.toast("Could not store Weather for: " + this.weather.key  , {
+          title: 'Failure!',
+          variant: 'danger',
+          toaster: 'b-toaster-top-center',
+          autoHideDelay: 5000
+        });
       }
     }
   }
