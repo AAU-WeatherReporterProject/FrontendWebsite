@@ -1,8 +1,11 @@
 <template>
   <div id="output">
     <div class="location"> in: {{key}}</div>
-    <div v-if="weather.length">
+    <div v-if="error">
       <p class="info">No Weather Data created yet. Please use <router-link :to="'/inputWeather'">"Input Weather"</router-link> to do so.</p>
+    </div>
+    <div v-else-if="isLoading">
+      <p class="info">Loading...</p>
     </div>
     <div v-else v-for="w in this.weather" class="weather-output">
       <div class="weather-box">
@@ -23,16 +26,26 @@ export default {
     return {
       key: this.$route.params.key,
       weather:[],
-      skyWeather: this.$store.state.skyWeather
+      skyWeather: this.$store.state.skyWeather,
+      isLoading: false,
+      error: null
     }
   },
   async created() {
-    console.log("in Created");
     try {
+      this.isLoading = true;
+      this.error = null;
       const response = await this.$store.dispatch('getWeatherData', this.key);
       this.weather = response.data;
+      this.isLoading = false;
+      if(this.weather.length === 0){
+        this.error = true;
+      }else{
+        this.error = null;
+      }
     } catch (e) {
-
+      this.isLoading = false;
+      this.error = true;
     }
   }
 }
