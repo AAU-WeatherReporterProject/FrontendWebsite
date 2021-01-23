@@ -21,7 +21,10 @@ export default {
       response = await this.$store.dispatch('getMeasurements');
       this.weatherlist = response.data;
     } catch (e) {
-      console.log(e);
+      this.$bvToast.toast('Receiving of measurements failed', {
+        title: `Error`,
+        variant: 'error' //'error', 'warning', 'success'
+      });
     }
   }
 }
