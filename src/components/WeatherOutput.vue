@@ -16,7 +16,7 @@
           <div v-else>No Sky-State-Information was given :(</div>
         </div>
         <div class="temp"> {{w.temperature}} °C</div>
-        <div class="date" >on: {{w.timestamp | formatDate}} </div>
+        <div class="date" >on: {{new Date(w.timestamp)}} </div>
       </div>
     </div>
   </div>
@@ -38,12 +38,6 @@ export default {
       this.weather = response.data;
     } catch (e) {
 
-    }
-  },
-  filters:{
-    formatDate(value){
-      if(!value) return '';
-      return value.replace(/(....)-(..)-(..) (..):(..):(..).(.)/, '$3.$2.$1 at: $4:$5 o\'clock');
     }
   }
 }
