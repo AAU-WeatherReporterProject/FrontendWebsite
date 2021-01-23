@@ -12,14 +12,26 @@
 export default {
   name: "WeatherOverview",
   data() {
-    return {weatherlist: []}
+    return {
+      weatherlist: [],
+      isLoading: false,
+      error: null
+    }
   },
   created: async function () {
     try {
       this.$forceUpdate();
+      this.isLoading = true;
+      this.error = null;
       let response;
       response = await this.$store.dispatch('getMeasurements');
       this.weatherlist = response.data;
+      this.isLoading = false;
+      if(this.weatherlist.length === 0){
+        this.error = true;
+      }else{
+        this.error = null;
+      }
     } catch (e) {
       this.$bvToast.toast('Receiving of measurements failed', {
         title: 'Error!',
@@ -27,6 +39,8 @@ export default {
         toaster: 'b-toaster-top-center',
         autoHideDelay: 5000
       });
+      this.isLoading = false;
+      this.error = true;
     }
   }
 }
