@@ -5,15 +5,50 @@ import api from '@/services/backend-api';
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  state: {
-  },
-  mutations: {
-  },
-  actions: {
-    test({commit}) {
-      return api.test();
-    }
-  },
-  modules: {
-  }
+    data: {
+
+    },
+    state: {
+        inputMsg: 'Waiting',
+        skyWeather: ['Sunny', 'Windy', 'Cloudy', 'Rain', 'Clear']
+    },
+    actions: {
+        getMeasurements: async function () {
+            let msg;
+            try {
+                msg = await api.getMeasurements();
+            } catch (e) {
+                msg = 'Weather Data could not be fetched.';
+                console.error(e);
+            }
+            return msg;
+        },
+
+        async getWeatherData({commit}, key) {
+            let msg = '';
+            try {
+               msg = await api.getWeatherData(key);
+            } catch (e) {
+                msg = 'Weather Data could not be fetched.';
+                console.error(e);
+            }
+            return msg;
+        },
+
+        async sendWeatherData({commit}, weather) {
+            commit('saveWeather', weather);
+            return this.inputMsg;
+        },
+
+        async saveWeather({commit}, weatherinfo) {
+            let key = weatherinfo.key;
+            let temperature = weatherinfo.temperature;
+            let skyState = weatherinfo.skyState;
+            return await api.sendWeatherData({
+                    metadata: {key},
+                    measurements: [{temperature, skyState}]
+                });
+        }
+    },
+    modules: {}
 })

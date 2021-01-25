@@ -1,9 +1,22 @@
 import AXIOS from 'axios';
+import { withVersioning, VersioningStrategy } from 'axios-api-versioning';
 // import store from '@/store/index';
 
-const axios = AXIOS.create({
-  baseURL: `/api`
+const axiosClient = AXIOS.create({
+  baseURL: `/api/v{apiVersion}`
 });
+
+// Make Versioning over URL possible
+const axios = withVersioning(axiosClient, {
+    apiVersion: '1',
+    versioningStrategy: VersioningStrategy.UrlPath
+});
+
+const options = {
+    headers:{
+        'Content-Type': 'application/json'
+    }
+};
 
 // axios.interceptors.request.use(config => {
 //     if(store.getters.token){
@@ -19,9 +32,22 @@ const axios = AXIOS.create({
 //     return config;
 // });
 
-
 export default {
-    test(){
-        return axios.get('/test');
+    // POST - send Data
+    sendWeatherData(data){
+        return axios.post(`/ingest`,data, options);
+    },
+
+    addMeasurementPoint(data){
+        return axios.post(`/measurementPoint`, data, options);
+    },
+
+    // GET - fetch Data
+    getMeasurements(){
+        return axios.get(`/measurementPoints`);
+    },
+
+    getWeatherData(key, from, to){
+        return axios.get(`/dataPoints`, {params: {key, from, to}});
     }
 }
