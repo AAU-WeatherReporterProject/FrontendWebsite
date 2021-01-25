@@ -35,16 +35,7 @@ module.exports = {
         },
 
         instruction: {
-          // the equivalent css selector for the "instructions" sub-section would be:
-          //  '#app div.hello'
-          selector: 'div.instruction',
-
-          elements: {
-            cliPluginLinks: {
-              selector: 'ul',
-              index: 0
-            }
-          }
+          selector: 'p.info'
         }
       }
     }

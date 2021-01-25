@@ -11,13 +11,13 @@ module.exports = {
       .end()
   },
 
-  'Test if Weather-Output is present': browser => {
+  'Test if overviewWeather-Div is present': browser => {
     browser
         .openOverviewWeatherPage()
-        .assert.elementPresent('.weather-output')
+        .assert.elementPresent('.overviewWeather')
         .end()
   },
-
+  // TODO Test nur wenn Element vorhanden?
   'Test if location-box is present': browser => {
     browser
         .openOverviewWeatherPage()
