@@ -21,6 +21,7 @@ module.exports = {
   'Test if location-box is present': browser => {
     browser
         .openOverviewWeatherPage()
+        .assert.elementPresent('.info')
         .assert.elementPresent('.location-box')
         .end()
   },
