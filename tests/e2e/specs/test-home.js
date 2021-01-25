@@ -6,7 +6,7 @@ module.exports = {
     browser
       .init()
       .waitForElementVisible('#app')
-      .assert.elementPresent('.instruction')
+      .assert.elementPresent('.home')
       .assert.containsText('h1', 'Welcome to the Weather-App')
       .assert.elementCount('img', 1)
       .end()
@@ -16,7 +16,7 @@ module.exports = {
     browser
         .init()
         .waitForElementVisible('#app')
-        .assert.elementPresent('#instruction-text')
+        .assert.elementPresent('.info')
         .assert.containsText('p', 'In this App you have the possibility')
         .end()
   },
