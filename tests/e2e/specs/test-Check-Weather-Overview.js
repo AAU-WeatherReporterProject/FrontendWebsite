@@ -22,7 +22,7 @@ module.exports = {
     browser
         .openOverviewWeatherPage()
         .assert.elementPresent('.info')
-        .assert.elementPresent('.location-box')
+//         .assert.elementPresent('.location-box')
         .end()
   },
 
