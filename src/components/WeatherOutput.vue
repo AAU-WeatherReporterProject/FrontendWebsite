@@ -12,7 +12,13 @@
         <div class="sky-state">
           <div>{{skyWeather[w.skyState]}}</div>
         </div>
-        <div class="temp"> {{w.temperature}} °C</div>
+        <div class="temp">
+          {{w.temperature}} °C
+          <div v-if="w.humidity==null"></div>
+          <div class="hum" v-else> {{w.humidity}} %</div>
+          <div v-if="w.pressure==null"></div>
+          <div class="press" v-else> {{w.pressure}} Pa</div>
+        </div>
         <div class="date" >on: {{new Date(w.timestamp)}} </div>
       </div>
     </div>

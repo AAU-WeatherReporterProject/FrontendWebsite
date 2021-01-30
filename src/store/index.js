@@ -44,9 +44,11 @@ export default new Vuex.Store({
             let key = weatherinfo.key;
             let temperature = weatherinfo.temperature;
             let skyState = weatherinfo.skyState;
+            let humidity = weatherinfo.humidity;
+            let pressure = weatherinfo.pressure;
             return await api.sendWeatherData({
                     metadata: {key},
-                    measurements: [{temperature, skyState}]
+                    measurements: [{temperature, skyState, humidity, pressure}]
                 });
         }
     },
