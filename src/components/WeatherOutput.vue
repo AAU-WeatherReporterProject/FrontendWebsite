@@ -114,7 +114,7 @@ export default {
       this.selectedDisplayOption = value;
     },
     createChart(chartId, chartData) {
-      const weatherChartObject = document.getElementById(chartId);
+      const weatherChartObject = document.getElementById(chartId).getContext('2d');
       // console.log("In create:chart");
       // console.log(chartData.type);
       // console.log(chartData.data);
