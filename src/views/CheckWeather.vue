@@ -54,7 +54,7 @@ export default {
   padding: 15px 25px;
 
   color: #FFF;
-  font-size: 102px;
+  font-size: 90px;
   font-weight: 900;
 
   text-shadow: 3px 6px rgba(0, 0, 0, 0.25);
@@ -63,6 +63,24 @@ export default {
   margin: 10px 0px;
 
   box-shadow: 3px 6px rgba(0, 0, 0, 0.25);
+}
+
+.weather-box .temp .hum{
+  color: #FFF;
+  font-size: 50px;
+  font-weight: 900;
+  text-shadow: 3px 6px rgba(0, 0, 0, 0.25);
+
+  margin: 10px 0px;
+}
+
+.weather-box .temp .press{
+  color: #FFF;
+  font-size: 30px;
+  font-weight: 900;
+  text-shadow: 3px 6px rgba(0, 0, 0, 0.25);
+
+  margin: 10px 0px;
 }
 
 .weather-box .sky-state{

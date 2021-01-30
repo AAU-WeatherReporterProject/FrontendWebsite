@@ -24,7 +24,7 @@
       <div class="left">
         <label for="press">Air Pressure:</label>
       </div>
-      <input id="press" class="input-press" type="number" :min="-40" :max="60" name="Air Pressure in Pa"
+      <input id="press" class="input-press" type="number" :min="150" :max="1030" name="Air Pressure in Pa"
              placeholder="Air Pressure in Pa" v-model="weather.pressure">
       <!--Input Sky-State-->
       <div class="left">

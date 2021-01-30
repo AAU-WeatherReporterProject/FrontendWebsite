@@ -14,8 +14,10 @@
         </div>
         <div class="temp">
           {{w.temperature}} °C
-          <div class="hum"> {{w.humidity}} %</div>
-          <div class="press"> {{w.pressure}} Pa</div>
+          <div v-if="w.humidity==null"></div>
+          <div class="hum" v-else> {{w.humidity}} %</div>
+          <div v-if="w.pressure==null"></div>
+          <div class="press" v-else> {{w.pressure}} Pa</div>
         </div>
         <div class="date" >on: {{new Date(w.timestamp)}} </div>
       </div>
