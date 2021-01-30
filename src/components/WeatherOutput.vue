@@ -1,6 +1,12 @@
 <template>
   <div id="output">
     <div class="location"> in: {{key}}</div>
+    <div>
+      <p class="info">Here you can choose how the data should be displayed:</p>
+      <toggle-switch
+        :options="displayOptions"
+        />
+    </div>
     <div v-if="error">
       <p class="info">No Weather Data created yet. Please use <router-link :to="'/inputWeather'">"Input Weather"</router-link> to do so.</p>
     </div>
