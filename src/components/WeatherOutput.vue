@@ -36,7 +36,7 @@
       </div>
       <!-- Display Chart-->
       <div class="chart" v-else-if="this.selectedDisplayOption == 'Chart'">
-        <canvas id="weatherChart" width="400" height="400"></canvas>
+        <WeatherChart></WeatherChart>
       </div>
       <div v-else>
         <p class="info">Please choose how the data should be displayed ;)</p>
@@ -46,8 +46,11 @@
 </template>
 
 <script>
+import WeatherChart from "@/components/WeatherChart";
+
 export default {
   name: "output",
+  components: {WeatherChart},
   data(){
     return {
       key: this.$route.params.key,
@@ -56,7 +59,6 @@ export default {
       isLoading: false,
       error: null,
       selectedDisplayOption: '',
-      weatherChartData: this.$store.state.weatherChartData,
       displayOptions: {
         layout: {
           color: 'black',
@@ -104,26 +106,10 @@ export default {
       this.isLoading = false;
       this.error = true;
     }
-    this.createChart('weatherChart', this.weatherChartData);
-  },
-  mounted() {
-    // this.createChart('weatherChart', this.weatherChartData);
   },
   methods: {
     selectDisplayOption: function (value){
       this.selectedDisplayOption = value;
-    },
-    createChart(chartId, chartData) {
-      const weatherChartObject = document.getElementById(chartId).getContext('2d');
-      // console.log("In create:chart");
-      // console.log(chartData.type);
-      // console.log(chartData.data);
-      // console.log(chartData.options);
-      const myChart = new Chart(weatherChartObject, {
-        type: chartData.type,
-        data: chartData.data,
-        options: chartData.options,
-      });
     }
   }
 }
