@@ -13,12 +13,12 @@
         <toggle-switch
             :options="displayOptions"
             @input="selectDisplayOption($event)"
-            v-model="this.selectedDisplayOption"
+            v-model="selectedDisplayOption"
         />
       </div>
       <!-- Display List-->
-      <div v-if="this.selectedDisplayOption == 'List'">
-        <div v-for="w in this.weather" >
+      <div v-if="selectedDisplayOption == 'List'">
+        <div v-for="w in weather" >
           <div class="weather-box">
             <div class="sky-state">
               <div>{{skyWeather[w.skyState]}}</div>
@@ -35,8 +35,8 @@
         </div>
       </div>
       <!-- Display Chart-->
-      <div class="chart" v-else-if="this.selectedDisplayOption == 'Chart'">
-        <WeatherChart></WeatherChart>
+      <div class="chart" v-else-if="selectedDisplayOption == 'Chart'">
+        <WeatherChart v-bind:weatherData=weather></WeatherChart>
       </div>
       <div v-else>
         <p class="info">Please choose how the data should be displayed ;)</p>
@@ -80,7 +80,7 @@ export default {
         },
         items: {
           delay: .4,
-          preSelected: 'List',
+          preSelected: 'Chart',
           disabled: false,
           labels: [
             {name: 'List', color: 'white', backgroundColor: 'blue'},
