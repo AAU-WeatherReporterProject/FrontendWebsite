@@ -4,9 +4,18 @@ const { reactiveProp } = mixins
 export default {
     extends: Line,
     mixins: [reactiveProp],
-    props: ['options'],
+    props: {
+        chartdata: {
+            type: Object,
+            default: null
+        },
+        options: {
+            tooltips: {
+                mode: "label"
+            }
+        }
+    },
     mounted () {
-        // this.chartData is created in the mixin.
         this.renderChart(this.chartData, this.options)
     }
 }
