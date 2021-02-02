@@ -28,7 +28,7 @@
               <div v-if="w.humidity==null"></div>
               <div class="hum" v-else> {{w.humidity}} %</div>
               <div v-if="w.pressure==null"></div>
-              <div class="press" v-else> {{w.pressure}} Pa</div>
+              <div class="press" v-else> {{w.pressure}} hPa</div>
             </div>
             <div class="date" >on: {{new Date(w.timestamp)}} </div>
           </div>
@@ -80,7 +80,7 @@ export default {
         },
         items: {
           delay: .4,
-          preSelected: 'Chart',
+          preSelected: 'List',
           disabled: false,
           labels: [
             {name: 'List', color: 'white', backgroundColor: 'blue'},

@@ -3,6 +3,7 @@
     <p class="chart-info">
       In order to get more detailed information on the individual information such as temperature etc.,
       the data that are not required can be hidden by clicking on their label.
+      If you move the mouse over the individual points, you can see their details in a tooltip.
     </p>
     <line-chart :chart-data="datacollection"></line-chart>
   </div>
@@ -33,7 +34,6 @@ export default {
     this.fillData(this);
   },
   methods: {
-
     collectWeatherData(vueScope){
       this.weatherData.forEach(fillArrays);
 
@@ -43,7 +43,7 @@ export default {
        var mm = String(date.getMonth() + 1).padStart(2, '0'); //January is 0!
        var yyyy = date.getFullYear();
        date = dd + '.' + mm + '.' + yyyy;
-       vueScope.timestamps.push(date);
+       vueScope.timestamps.push(vueScope.$store.state.skyWeather[item.skyState] +' - '+ date);
        vueScope.temperatures.push(item.temperature);
        vueScope.humidities.push(item.humidity);
        vueScope.pressures.push(item.pressure);
@@ -55,18 +55,18 @@ export default {
         labels: vueScope.timestamps,
         datasets: [
           {
-            label: 'Temperature',
+            label: 'Temperature in °C',
             backgroundColor: 'rgba(114, 0, 76, 0.4)',
             borderColor: 'rgba(114, 0, 76, 1)',
             data: vueScope.temperatures
           }, {
-            label: 'Humidity',
+            label: 'Humidity in %',
             backgroundColor: 'rgba(9, 183, 183, 0.4)',
             borderColor: 'rgba(9, 183, 183, 1)',
             data: vueScope.humidities
           },
           {
-            label: 'Air Pressure',
+            label: 'Air Pressure in hPa',
             backgroundColor: 'rgba(213, 216, 0, 0.4)',
             borderColor: 'rgba(213, 216, 0, 1)',
             data: vueScope.pressures
