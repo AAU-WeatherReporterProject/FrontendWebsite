@@ -1,7 +1,10 @@
 <template>
   <div class="small">
+    <p class="chart-info">
+      In order to get more detailed information on the individual information such as temperature etc.,
+      the data that are not required can be hidden by clicking on their label.
+    </p>
     <line-chart :chart-data="datacollection"></line-chart>
-    <button @click="fillData()">Randomize</button>
   </div>
 </template>
 
@@ -12,33 +15,64 @@ export default {
   components: {
     LineChart
   },
+  props:{
+    weatherData: Array
+  },
   data () {
     return {
-      datacollection: null
+      datacollection: null,
+      timestamps: [],
+      temperatures: [],
+      humidities: [],
+      pressures: [],
+      skyStates: [],
     }
   },
   mounted () {
-    this.fillData()
+    this.collectWeatherData(this);
+    this.fillData(this);
   },
   methods: {
-    fillData () {
+
+    collectWeatherData(vueScope){
+      this.weatherData.forEach(fillArrays);
+
+     function fillArrays(item){
+       var date = new Date(item.timestamp);
+       var dd = String(date.getDate()).padStart(2, '0');
+       var mm = String(date.getMonth() + 1).padStart(2, '0'); //January is 0!
+       var yyyy = date.getFullYear();
+       date = dd + '.' + mm + '.' + yyyy;
+       vueScope.timestamps.push(date);
+       vueScope.temperatures.push(item.temperature);
+       vueScope.humidities.push(item.humidity);
+       vueScope.pressures.push(item.pressure);
+       vueScope.skyStates.push(item.skyState);
+     }
+    },
+    fillData (vueScope) {
       this.datacollection = {
-        labels: [this.getRandomInt(), this.getRandomInt()],
+        labels: vueScope.timestamps,
         datasets: [
           {
-            label: 'Data One',
-            backgroundColor: '#f87979',
-            data: [this.getRandomInt(), this.getRandomInt()]
+            label: 'Temperature',
+            backgroundColor: 'rgba(114, 0, 76, 0.4)',
+            borderColor: 'rgba(114, 0, 76, 1)',
+            data: vueScope.temperatures
           }, {
-            label: 'Data One',
-            backgroundColor: '#f87979',
-            data: [this.getRandomInt(), this.getRandomInt()]
+            label: 'Humidity',
+            backgroundColor: 'rgba(9, 183, 183, 0.4)',
+            borderColor: 'rgba(9, 183, 183, 1)',
+            data: vueScope.humidities
+          },
+          {
+            label: 'Air Pressure',
+            backgroundColor: 'rgba(213, 216, 0, 0.4)',
+            borderColor: 'rgba(213, 216, 0, 1)',
+            data: vueScope.pressures
           }
         ]
       }
-    },
-    getRandomInt () {
-      return Math.floor(Math.random() * (50 - 5 + 1)) + 5
     }
   }
 }
