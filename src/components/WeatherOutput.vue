@@ -1,15 +1,19 @@
 <template>
   <div id="output">
-    <div class="location"> in: {{key}}</div>
+    <div class="location"> in: {{ key }} <br>
+      the Average Temperature is: {{average}}</div>
     <div v-if="error">
-      <p class="info">No Weather Data created yet. Please use <router-link :to="'/inputWeather'">"Input Weather"</router-link> to do so.</p>
+      <p class="info">No Weather Data created yet. Please use
+        <router-link :to="'/inputWeather'">"Input Weather"</router-link>
+        to do so.
+      </p>
     </div>
     <div v-else-if="isLoading">
       <p class="info">Loading...</p>
     </div>
     <div v-else class="weather-output">
       <div>
-        <p class="info">Here you can choose how the data should be displayed: {{this.selectedDisplayOption}}</p>
+        <p class="info">Here you can choose how the data should be displayed:</p>
         <toggle-switch
             :options="displayOptions"
             @input="selectDisplayOption($event)"
@@ -18,19 +22,19 @@
       </div>
       <!-- Display List-->
       <div v-if="selectedDisplayOption == 'List'">
-        <div v-for="w in weather" >
+        <div v-for="w in weather">
           <div class="weather-box">
             <div class="sky-state">
-              <div>{{skyWeather[w.skyState]}}</div>
+              <div>{{ skyWeather[w.skyState] }}</div>
             </div>
             <div class="temp">
-              {{w.temperature}} °C
+              {{ w.temperature }} °C
               <div v-if="w.humidity==null"></div>
-              <div class="hum" v-else> {{w.humidity}} %</div>
+              <div class="hum" v-else> {{ w.humidity }} %</div>
               <div v-if="w.pressure==null"></div>
-              <div class="press" v-else> {{w.pressure}} hPa</div>
+              <div class="press" v-else> {{ w.pressure }} hPa</div>
             </div>
-            <div class="date" >on: {{new Date(w.timestamp)}} </div>
+            <div class="date">on: {{ new Date(w.timestamp) }}</div>
           </div>
         </div>
       </div>
@@ -51,10 +55,12 @@ import WeatherChart from "@/components/WeatherChart";
 export default {
   name: "output",
   components: {WeatherChart},
-  data(){
+  data() {
     return {
       key: this.$route.params.key,
-      weather:[],
+      weather: [],
+      average: 0.0,
+      countTemps: 0,
       skyWeather: this.$store.state.skyWeather,
       isLoading: false,
       error: null,
@@ -97,19 +103,33 @@ export default {
       const response = await this.$store.dispatch('getWeatherData', this.key);
       this.weather = response.data;
       this.isLoading = false;
-      if(this.weather.length === 0){
+      if (this.weather.length === 0) {
         this.error = true;
-      }else{
+      } else {
         this.error = null;
       }
     } catch (e) {
       this.isLoading = false;
       this.error = true;
     }
+
+    this.computeAverage(this);
   },
   methods: {
-    selectDisplayOption: function (value){
+    selectDisplayOption: function (value) {
       this.selectedDisplayOption = value;
+    },
+    computeAverage(vueScope){
+      vueScope.average = 0;
+      vueScope.countTemps = 0;
+      vueScope.weather.forEach(buildSum);
+
+      function buildSum(item) {
+        var temp = parseFloat(item.temperature);
+        vueScope.average += temp;
+        vueScope.countTemps++;
+      }
+      vueScope.average = vueScope.average / vueScope.countTemps;
     }
   }
 }
