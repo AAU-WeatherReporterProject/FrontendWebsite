@@ -32,7 +32,7 @@
       </div>
       <select id="sky" class="input-sky-state" name="Skystate" v-model="weather.skyState" required>
         <option disabled value="">Please select one</option>
-        <option v-for="(skystate,index) in this.$store.state.skyWeather" :value="index">{{skystate}}</option>
+        <option v-for="(skystate,index) in $store.state.skyWeather" :value="index">{{skystate}}</option>
       </select>
       <button type="submit">Add Weather</button>
     </form>

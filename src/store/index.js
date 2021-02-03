@@ -2,15 +2,12 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import api from '@/services/backend-api';
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 export default new Vuex.Store({
-    data: {
-
-    },
     state: {
         inputMsg: 'Waiting',
-        skyWeather: ['Sunny', 'Windy', 'Cloudy', 'Rain', 'Clear']
+        skyWeather: ['Sunny', 'Windy', 'Cloudy', 'Rain', 'Clear'],
     },
     actions: {
         getMeasurements: async function () {
@@ -54,3 +51,5 @@ export default new Vuex.Store({
     },
     modules: {}
 })
+
+// Vue.use(weatherChartData);
