@@ -130,6 +130,7 @@ export default {
         vueScope.countTemps++;
       }
       vueScope.average = vueScope.average / vueScope.countTemps;
+      vueScope.average = parseFloat(vueScope.average.toFixed(2));
     }
   }
 }
