@@ -37,30 +37,19 @@ module.exports = {
             .end()
     },
     'Test if XXXX': browser => {
-        // Input Fields
-        const inputLocation = '#loc';
-        const inputTemperature = '#temp';
-        const inputHumidity = '#hum';
-        const inputAirPressure = '#press';
-        const skySelect = '#sky';
-        const skySelectValue = '#sky > option:nth-child(4)';
-        const button = '#submitBtn';
+        const page = browser.page.inputWeatherPage();
 
-        // Input Variables
-        const location = 'MyTestInputLocation';
-        const temp = 45;
-        const hum = 64;
-        const press = 1018;
-
-        browser
-            .openInputWeatherPage()
-            .setValue(inputLocation, location)
-            .setValue(inputTemperature, temp)
-            .setValue(inputHumidity, hum)
-            .setValue(inputAirPressure, press)
-            .click(skySelect)
-            .click(skySelectValue)
-            .click(button)
+        // Page-object for better reusability and DRY
+        page
+            .navigate()
+            .setValue('@inputLocation', '@location')
+            .setValue('@inputTemperature', '@temp')
+            .setValue('@inputHumidity', '@hum')
+            .setValue('@inputAirPressure', '@press')
+            // .click(skySelect)
+            // .click(skySelectValue)
+            .selectSkyState('@skySelect', '@skySelectValue')
+            .click('@submitBtn')
             .saveScreenshot('tests_output/all_inputs.png') // Just for development to check if it`s working
             .openOverviewWeatherPage()
             .waitForElementVisible('#app')
