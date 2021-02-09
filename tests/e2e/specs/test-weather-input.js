@@ -38,24 +38,23 @@ module.exports = {
     },
     'Test if XXXX': browser => {
         const page = browser.page.inputWeatherPage();
-
+        const location = 'MyTestInputLocation';
         // Page-object for better reusability and DRY
         page
             .navigate()
-            .setValue('@inputLocation', '@location')
-            .setValue('@inputTemperature', '@temp')
-            .setValue('@inputHumidity', '@hum')
-            .setValue('@inputAirPressure', '@press')
-            // .click(skySelect)
-            // .click(skySelectValue)
-            .selectSkyState('@skySelect', '@skySelectValue')
-            .click('@submitBtn')
-            .saveScreenshot('tests_output/all_inputs.png') // Just for development to check if it`s working
+            .setLocation(location)
+            .setTemperature(34)
+            .setHumidity(64)
+            .setAirPressure(1018)
+            .selectSkyState('@skySelect', 4)
+            .submitWeatherData()
+            //.saveScreenshot('tests_output/all_inputs.png') // Just for development to check if it`s working
             .openOverviewWeatherPage()
             .waitForElementVisible('#app')
             .assert.elementPresent('#output')
             .assert.elementPresent('a[href$="' + location + '"]')
-            .saveScreenshot('tests_output/weather_overview.png')  // Just for development to check if it`s working
+           // .saveScreenshot('tests_output/weather_overview.png')  // Just for development to check if it`s working
             .end()
     },
+
 }
