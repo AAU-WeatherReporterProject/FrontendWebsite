@@ -3,21 +3,23 @@
 
 module.exports = {
   'Test Home with Header and Logo': browser => {
-    browser
-      .init()
-      .waitForElementVisible('#app')
-      .assert.elementPresent('.home')
-      .assert.containsText('h1', 'Welcome to the Weather-App')
-      .assert.elementCount('img', 1)
-      .end()
+    const page = browser.page.instructionPage();
+    page
+        .navigate()
+        .waitForElementVisible('@appContainer')
+        .assert.elementPresent('@homeDiv')
+        .assert.containsText('@headline', 'Welcome to the Weather-App')
+        .assert.elementCount('@logo', 1)
+        .end()
   },
 
   'Test if p-tag with instruction is visible': browser => {
-    browser
-        .init()
-        .waitForElementVisible('#app')
-        .assert.elementPresent('.info')
-        .assert.containsText('p', 'In this App you have the possibility')
+    const page = browser.page.instructionPage();
+    page
+        .navigate()
+        .waitForElementVisible('@homeDiv')
+        .assert.elementPresent('@instruction')
+        .assert.containsText('@instruction', 'In this App you have the possibility')
         .end()
   },
 }
