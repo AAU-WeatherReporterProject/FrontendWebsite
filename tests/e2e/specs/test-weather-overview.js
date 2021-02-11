@@ -18,11 +18,11 @@ module.exports = {
         .end()
   },
 
-  'Test if location-box is present': browser => {
+  'Test if weatheroutput is present': browser => {
     browser.page.overviewWeatherPage()
         .navigate()
         .waitForElementVisible('@info')
-        .verify.visible('@locationbox')
+       .assert.elementPresent('@weatheroutput')
         .end()
   },
 

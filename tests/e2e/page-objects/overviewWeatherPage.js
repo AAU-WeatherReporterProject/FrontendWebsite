@@ -7,7 +7,6 @@ module.exports = {
         headline: 'h1',
         info: '.info',
         weatheroutput: '.weather-output',
-        locationbox: '.location-box',
         showBoxesLocation: '.location-big',
     },
     commands: [{
