@@ -17,12 +17,12 @@ module.exports = {
         .assert.elementPresent('.overviewWeather')
         .end()
   },
-  // TODO Test nur wenn Element vorhanden?
+
   'Test if location-box is present': browser => {
-    browser
-        .openOverviewWeatherPage()
-        .assert.elementPresent('.info')
-//         .assert.elementPresent('.location-box')
+    browser.page.overviewWeatherPage()
+        .navigate()
+        .waitForElementVisible('@info')
+       .assert.elementPresent('@locationbox')
         .end()
   },
 
@@ -33,37 +33,23 @@ module.exports = {
         .end()
   },
 
-  'Test Overview if h1 is visible': browser => {
-    browser
-        .openOverviewWeatherPage()
-        .assert.elementPresent('.info')
-        .assert.containsText('h1', 'Weather Overview')
+  'Test Overview if h1 is visible and contains right text': browser => {
+    browser.page.overviewWeatherPage()
+        .navigate()
+        .waitForElementVisible('@headline')
+        .assert.containsText('@headline', 'Weather Overview')
         .end()
   },
 
+  'Test if Link to Detailpage is working': browser => {
+    const location = 'Klagenfurt';
 
-
-  // 'Test WEATHER-Overview contains all Divs': browser => {
-  //   browser
-  //       .checkWeatherOutputContainsAllDivs()
-  //       .assert.elementPresent('.sky-state')
-  //       .end()
-  // },
-
-
-  // 'Test if Search-box is present': browser => {
-  //   browser
-  //       .url(browser.launch_url + "checkWeather")
-  //       .waitForElementVisible('#output')
-  //       .assert.elementPresent('.search-box')
-  //       .end()
-  // },
-
-  // 'Test if Search-bar is present': browser => {
-  //   browser
-  //       .openCheckWeatherPage()
-  //       .assert.elementPresent('.search-bar')
-  //       .end()
-  // },
-
+    browser.page.overviewWeatherPage()
+        .navigate()
+        .waitForElementVisible('@weatheroutput')
+        .saveScreenshot('tests_output/Klagenfurt_Link_is_visible.png')
+        .linkToDetailPage(location)
+        .assert.containsText('div.location', location)
+        .end()
+  }
 }
