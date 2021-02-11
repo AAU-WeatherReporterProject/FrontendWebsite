@@ -42,12 +42,12 @@ module.exports = {
   },
 
   'Test if Link to Detailpage is working': browser => {
-    const location = 'Klagenfurt';
+    const location = 'TestLocation';
 
     browser.page.overviewWeatherPage()
         .navigate()
         .waitForElementVisible('@weatheroutput')
-        .saveScreenshot('tests_output/Klagenfurt_Link_is_visible.png')
+        .saveScreenshot('tests_output/TestLocation_Link_is_visible.png')
         .linkToDetailPage(location)
         .assert.containsText('div.location', location)
         .end()

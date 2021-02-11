@@ -43,7 +43,7 @@ module.exports = {
     },
 
     'Test if Create new WeatherData is functioning': browser => {
-        const location = 'MyTestInputLocation';
+        const location = 'TestLocation';
         // Page-object for better reusability and DRY
        browser.page.inputWeatherPage()
             .navigate()
