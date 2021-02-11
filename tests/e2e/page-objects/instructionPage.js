@@ -20,6 +20,9 @@ module.exports = {
     homeDiv: '.home',
     navBar: '#nav',
     headline: 'h1',
-    instruction: 'p.info'
+    instruction: 'p.info',
+    homeLink: '#home-link',
+    overviewLink: '#check-ov-link',
+    inputLink: '#input-w-link'
   }
 }
