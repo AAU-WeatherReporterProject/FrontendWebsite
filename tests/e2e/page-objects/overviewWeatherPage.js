@@ -6,9 +6,9 @@ module.exports = {
         output: '#output',
         headline: 'h1',
         info: '.info',
-        weatheroutput: 'div.weather-output',
-        locationbox: 'div.location-box',
-        showBoxesLocation: 'div.location-big',
+        weatheroutput: '.weather-output',
+        locationbox: '.location-box',
+        showBoxesLocation: '.location-big',
     },
     commands: [{
        linkToDetailPage(location) {

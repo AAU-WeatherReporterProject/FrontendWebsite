@@ -22,7 +22,7 @@ module.exports = {
     browser.page.overviewWeatherPage()
         .navigate()
         .waitForElementVisible('@info')
-       .assert.elementPresent('@locationbox')
+        .verify.visible('@locationbox')
         .end()
   },
 
