@@ -62,51 +62,19 @@ module.exports = {
             .end()
     },
 
-    'Test if wrong Temperature is not functioning': browser => {
+    'Test if wrong Data is not functioning': browser => {
         const location = 'NotWorking';
         browser.page.inputWeatherPage()
             .navigate()
             .setLocation(location)
             .setTemperature(100)
-            .setHumidity(34)
-            .setAirPressure(1000)
-            .selectSkyState('@skySelect', 3)
-            .submitWeatherData()
-            .saveScreenshot('tests_output/temp_input_wrong.png') // Just for development to check if it`s working
-            .openOverviewWeatherPage()
-            .assert.elementNotPresent('a[href$="' + location + '"]')
-            .end()
-    },
-
-    'Test if wrong Humidity is not functioning': browser => {
-        const location = 'NotWorking';
-        browser.page.inputWeatherPage()
-            .navigate()
-            .setLocation(location)
-            .setTemperature(-4)
-            .setHumidity(120)
-            .setAirPressure(1000)
-            .selectSkyState('@skySelect', 3)
-            .submitWeatherData()
-            .saveScreenshot('tests_output/humidity_input_wrong.png') // Just for development to check if it`s working
-            .openOverviewWeatherPage()
-            .assert.elementNotPresent('a[href$="' + location + '"]')
-            .end()
-    },
-
-    'Test if wrong Airpressure is not functioning': browser => {
-        const location = 'NotWorking';
-        browser.page.inputWeatherPage()
-            .navigate()
-            .setLocation(location)
-            .setTemperature(-4)
-            .setHumidity(34)
+            .setHumidity(304)
             .setAirPressure(10)
             .selectSkyState('@skySelect', 3)
             .submitWeatherData()
-            .saveScreenshot('tests_output/airpressure_input_wrong.png') // Just for development to check if it`s working
+            .saveScreenshot('tests_output/input_wrong.png') // Just for development to check if it`s working
             .openOverviewWeatherPage()
             .assert.elementNotPresent('a[href$="' + location + '"]')
             .end()
-    },
+    }
 }
