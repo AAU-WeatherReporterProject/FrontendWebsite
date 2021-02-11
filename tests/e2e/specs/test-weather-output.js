@@ -38,7 +38,7 @@ module.exports = {
             .end()
     },
 
-    'Test if toggleSwitch is available (Weather-Details)': browser => {
+    'Test if toggleSwitch and Date are available (Weather-Details)': browser => {
         const location = 'TestLocation';
 
         browser
@@ -48,6 +48,7 @@ module.exports = {
         browser.page.weatherOutputPage()
             .checkIfWeatherDataExists()
             .assert.elementPresent('@toggleSwitch')
+            .assert.elementPresent('@date')
             .end()
     },
 
@@ -75,19 +76,6 @@ module.exports = {
             .checkIfWeatherDataExists()
             .assert.elementPresent('@humidity')
             .assert.elementPresent('@airPress')
-            .end()
-    },
-
-    'Test Weather-Detailpage if date is available': browser => {
-        const location = 'TestLocation';
-
-        browser
-            .init()
-            .openWeatherOutputPage(location)
-
-        browser.page.weatherOutputPage()
-            .checkIfWeatherDataExists()
-            .assert.elementPresent('@date')
             .end()
     },
 
