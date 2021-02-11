@@ -3,8 +3,7 @@
 
 module.exports = {
   'Test Home with Header and Logo': browser => {
-    const page = browser.page.instructionPage();
-    page
+    browser.page.instructionPage()
         .navigate()
         .waitForElementVisible('@appContainer')
         .assert.elementPresent('@homeDiv')
@@ -14,8 +13,7 @@ module.exports = {
   },
 
   'Test if p-tag with instruction is visible': browser => {
-    const page = browser.page.instructionPage();
-    page
+    browser.page.instructionPage()
         .navigate()
         .waitForElementVisible('@homeDiv')
         .assert.elementPresent('@instruction')
